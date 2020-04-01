@@ -1,0 +1,62 @@
+//Design: Example Design 
+//License: 1 
+//Version: 2.0 
+//Designer:  
+//Date: 8 / 12 / 2019 
+
+
+
+module AHB_lite(input HCLK, HRESETn);
+
+//master signals
+wire [31:0] HADDR, HWDATA;
+wire HWRITE, HMASTCLOCK;
+wire [1:0] HTRANS;
+wire [2:0] HSIZE, HBURST;
+wire [3:0] HPROT;
+
+//slave 1 signals
+wire [31:0] HRDATA_1;
+wire HREADYOUT_1, HRESP_1;
+
+//slave 2 signals
+wire [31:0] HRDATA_2;
+wire HREADYOUT_2, HRESP_2;
+
+//slave 3 signals
+wire [31:0] HRDATA_3;
+wire HREADYOUT_3, HRESP_3;
+
+//default slave signals
+wire [31:0] HRDATA_DF;
+wire HREADYOUT_DF, HRESP_DF;
+
+//decoder signals
+wire HSEL_1, HSEL_2, HSEL_3, HSEL_DF;
+
+//mux signals
+wire [31:0] HRDATA;
+wire HREADY, HRESP;
+
+//Master Instantiation
+Master master ( .HRDATA(HRDATA), .HREADY(HREADY), .HRESP(HRESP), .clk(HCLK), .reset(HRESETn), .HWRITE(HWRITE), .HMASTCLOCK(HMASTCLOCK), .HADDR(HADDR), .HWDATA(HWDATA), .HPROT(HPROT), .HSIZE(HSIZE), .HBURST(HBURST), .HTRANS(HTRANS));
+
+//Decoder instantiation
+decoder dec(HADDR, HSEL_1, HSEL_2, HSEL_3, HSEL_DF);
+
+//Multipleser instantiation
+multiplexer mux( HRDATA, HREADY, HRESP, HRDATA_1, HRDATA_2, HRDATA_3, HRDATA_DF, HCLK, HRESETn, HREADYOUT_1, HREADYOUT_2, HREADYOUT_3, HREADYOUT_DF, HRESP_1, HRESP_2, HRESP_3, HRESP_DF, HSEL_1, HSEL_2, HSEL_3, HSEL_DF);
+
+//Slave 1 Instantiation
+slave_1 uut1 ( .HRDATA(HRDATA_1), .HREADYOUT(HREADYOUT_1), .HRESP(HRESP_1), .HWRITE(HWRITE), .HMASTCLOCK(HMASTCLOCK), .HSEL(HSEL_1), .HREADY(HREADY), .HADDR(HADDR), .HWDATA(HWDATA), .HPROT(HPROT), .HSIZE(HSIZE), .HBURST(HBURST), .HTRANS(HTRANS));
+
+//Slave 2 Instantiation
+slave_2 uut2 ( .HRDATA(HRDATA_2), .HREADYOUT(HREADYOUT_2), .HRESP(HRESP_2), .HWRITE(HWRITE), .HMASTCLOCK(HMASTCLOCK), .HSEL(HSEL_2), .HREADY(HREADY), .HADDR(HADDR), .HWDATA(HWDATA), .HPROT(HPROT), .HSIZE(HSIZE), .HBURST(HBURST), .HTRANS(HTRANS));
+
+//Slave 3 Instantiation
+slave_3 uut3 ( .HRDATA(HRDATA_3), .HREADYOUT(HREADYOUT_3), .HRESP(HRESP_3), .HWRITE(HWRITE), .HMASTCLOCK(HMASTCLOCK), .HSEL(HSEL_3), .HREADY(HREADY), .HADDR(HADDR), .HWDATA(HWDATA), .HPROT(HPROT), .HSIZE(HSIZE), .HBURST(HBURST), .HTRANS(HTRANS));
+
+//Default Slave Instantiation
+slave_default uutDF(HRDATA_DF, HREADYOUT_DF, HRESP_DF, HWRITE, HMASTCLOCK, HSEL_DF, HREADY, HRESETn, HADDR, HWDATA, HPROT, HSIZE, HBURST, HTRANS);
+
+endmodule
