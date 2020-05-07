@@ -1,0 +1,83 @@
+{
+    "component_type": "ADC12",
+    "class": 1,
+    "description": "XFAB 12-bit ADC",
+    "regs": [
+      {
+        "name": "ADCCTRL",
+        "description": "ADC Control Register",
+        "offset": "0",
+        "size": 6,
+        "access": 0,
+        "initial_value": "0",
+        "fields": [
+          {
+            "name": "ADCEN",
+            "size": 1,
+            "offset": 0,
+            "description": "ADC Enable"
+          },
+          {
+            "name": "SOC",
+            "size": 1,
+            "offset": 1,
+            "description": "ADC Start of Conversion"
+          },
+          {
+            "name": "CHSEL",
+            "size": 2,
+            "offset": 3,
+            "description": "ADC Channel Selection"
+          },
+          {
+            "name": "VREFSEL",
+            "size": 1,
+            "offset": 4,
+            "description": "VRef Selection; 0: External, 1: Internal"
+          }
+        ]
+      },
+      {
+        "name": "DATA",
+        "description": "Converted Sample",
+        "offset": "1",
+        "size": 5,
+        "access": 1,
+        "initial_value": "0"
+      },
+      {
+        "name": "STATUS",
+        "description": "ADC Status Register",
+        "offset": "2",
+        "size": 1,
+        "access": 1,
+        "initial_value": "0",
+        "fields": [
+          {
+            "name": "EOC",
+            "size": 1,
+            "offset": 0,
+            "description": "End of Conversion"
+          }
+        ]
+      },
+      {
+        "name": "PRESCALAR",
+        "description": "ADC Clock Prescalar",
+        "offset": "3",
+        "size": 32,
+        "access": 0,
+        "initial_value": "0"
+      }
+  ],
+    "irqs":[
+        {
+        "reg": "STATUS",
+        "field": "EOC",
+        "trig_level": 1
+        }
+    ]
+}
+  
+  
+  

@@ -1,0 +1,78 @@
+{
+    "component_type": "uart",
+    "class": 1,
+    "description": "module is similar to AT96S2313's UART, but has limited function.",
+    "regs": [
+      {
+        "name": "io_a",
+        "description": "input/output address",
+        "offset": "0",
+        "size": 6,
+        "access": 0,
+        "initial_value": "0"
+      },
+      {
+        "name": "io_di",
+        "description": "input/output data in",
+        "offset": "1",
+        "size": 8,
+        "access": 0,
+        "initial_value": "0"
+      },
+      {
+        "name": "io_do",
+        "description": "input/output data out",
+        "offset": "2",
+        "size": 8,
+        "access": 1,
+        "initial_value": "0"
+      },
+      {
+        "name": "io",
+        "description": "UART control signals",
+        "offset": "3",
+        "size": 2,
+        "access": 0,
+        "initial_value": "0",
+        "fields": [
+            {
+              "name": "re",
+              "size": 1,
+              "offset": 0,
+              "description": "Read enable"
+            },
+            {
+                "name": "we",
+                "size": 1,
+                "offset": 1,
+                "description": "Write enable"
+            }
+          ]
+      }
+  ],
+    "irqs":[
+        {
+        "reg": "rxc_irq",
+        "field": "",
+        "trig_level": 1
+        },
+        {
+          "reg": "txc_irq",
+          "field": "",
+          "trig_level": 1
+        },
+        {
+          "reg": "udr_irq",
+          "field": "",
+          "trig_level": 1
+        },
+        {
+          "reg": "txc_irq_ack",
+          "field": "",
+          "trig_level": 1
+        }
+    ]
+}
+  
+  
+  

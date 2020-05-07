@@ -1,0 +1,63 @@
+{
+    "component_type": "gpio",
+    "class": 1,
+    "description": "General-purpose input/output",
+    "regs": [
+      {
+        "name": "io_a",
+        "description": "input/output address",
+        "offset": "0",
+        "size": 6,
+        "access": 0,
+        "initial_value": "0"
+      },
+      {
+        "name": "io_di",
+        "description": "input/output data in",
+        "offset": "1",
+        "size": 8,
+        "access": 0,
+        "initial_value": "0"
+      },
+      {
+        "name": "io_do",
+        "description": "input/output data out",
+        "offset": "2",
+        "size": 8,
+        "access": 1,
+        "initial_value": "0"
+      },
+      {
+        "name": "io",
+        "description": "GPIO control signals",
+        "offset": "3",
+        "size": 2,
+        "access": 0,
+        "initial_value": "0",
+        "fields": [
+            {
+              "name": "re",
+              "size": 1,
+              "offset": 0,
+              "description": "Read enable"
+            },
+            {
+                "name": "we",
+                "size": 1,
+                "offset": 1,
+                "description": "Write enable"
+            }
+          ]
+      }
+  ],
+    "irqs":[
+        {
+        "reg": "",
+        "field": "",
+        "trig_level": 1
+        }
+    ]
+}
+  
+  
+  
