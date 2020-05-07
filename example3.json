@@ -1,0 +1,67 @@
+{
+  "design": "Example Design",
+  "module_name": "soc1",
+  "license": 1,
+  "version": "2.0",
+  "creation_date": {
+    "day": 8,
+    "month": 12,
+    "year": 2019
+  },
+  "designer": {
+    "username": ""
+  },
+  "soc": {
+    "architecture_type": "1",
+    "buses": [
+      {
+        "bus_id": 1,
+        "bus_standard": "AHB_lite",
+        "clock": 100
+      }
+    ],
+    "components": [
+      {
+         "component_id": 1,
+        "component_type": "Master",
+        "type": 1,
+        "base": "0x01000000",
+        "cfg": {
+          "irqs": 16,
+          "mul": 1
+        },
+        "connection_1": {
+          "bus_id": 1,
+          "connection_type": "MASTER"
+        }
+      },
+      {
+        "component_id": 2,
+        "component_type": "SLAVE1",
+        "base": "0x02000000",
+        "connection_1": {
+          "bus_id": 1,
+          "connection_type": "SLAVE"
+        }
+      },
+      {
+        "component_id": 3,
+        "component_type": "SLAVE2",
+        "base": "0x03000000",
+        "connection_1": {
+          "bus_id": 1,
+          "connection_type": "SLAVE"
+        }
+      },
+      {
+        "component_id": 4,
+        "component_type": "SLAVE3",
+        "base": "0x04000000",
+        "connection_1": {
+          "bus_id": 1,
+          "connection_type": "SLAVE"
+        }
+      }
+    ]
+  }
+}
